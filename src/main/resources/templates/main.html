@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The Dinner App</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/commons.css">
+</head>
+<body>
+<header>
+<div th:replace="fragments.html :: header"></div>
+<div th:replace="fragments.html :: menu"></div>
+</header>
+
+<content>
+<div id="content">
+    <div th:replace="fragments.html :: sidenav"></div>
+
+    <div id="restaurants">
+        <th:block th:each="restaurant : ${restaurants}">
+            <div class="restaurant-box">
+                <div th:text="${restaurant.restaurantName}" class="title-box"></div>
+                <div th:text="${restaurant.address}" class="address-box"></div>
+            </div>
+        </th:block>
+    </div>
+
+</content>
+
+<footer>
+    <div th:replace="fragments.html :: footer"></div>
+</footer>
+
+</body>
+</html>

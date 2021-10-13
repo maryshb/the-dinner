@@ -1,0 +1,156 @@
+#logo {
+
+    margin-top:2%;
+    width: 25%;
+    float:left;
+    display: inline;
+}
+
+#form {
+
+    margin-right:5%;
+    margin-top:9%;
+    display:block;
+    float: right;
+
+}
+
+#search {
+    padding:10px;
+    border-radius: 8px 0 0 8px;;
+    border: 2px bold;
+    font-size:15px;
+
+}
+
+#search-button {
+    display: inline;
+    padding:10px;
+    border-radius: 0 8px 8px 0;;
+    font-size:15px;
+    cursor:pointer;
+    transition: color 1s;
+
+}
+
+#search-button:hover {
+    color: #ffb655;
+}
+
+
+#menu {
+    font-family: "Lato", sans-serif;
+    clear:both;
+    margin: 40px 0 0 0;
+    text-align: center;
+    border-top: 2px solid #8080805e;
+}
+
+.menu-button {
+    font-size: 26px;
+    text-decoration: none;
+    color: black;
+    margin: 5px 25px;
+    transition: color 1s;
+}
+
+.menu-button:hover {
+    color:#ffb655;
+
+}
+
+.footer-container {
+    font-family: "Lato", sans-serif;
+    background-color: #ffb655;
+    padding-bottom: 3rem;
+    position: absolute;
+    display: flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+}
+
+.footer{
+    padding:45px;
+    font-size:95%;
+    flex-wrap:wrap;
+    display:flex;
+    justify-content:center;
+    text-decoration:none;
+    margin: 0 auto;
+    padding-bottom:1rem;
+    margin-left: auto;
+    margin-right: 0;
+
+
+}
+
+.footer-heading {
+    display:flex;
+    flex-direction: column;
+    margin-right:4rem;
+    margin-left:4rem;
+
+}
+
+.footer-heading h2 {
+    font-size:2rem%;
+    color:#f0f8ffb8;
+}
+
+.footer-heading a{
+    font-size:1rem;
+    font-weight:bol;
+    text-decoration:none;
+    color: #f0f8ffb8;
+
+}
+
+.footer-heading a:hover {
+    color:black;
+    transition: 0.3s ease-out;
+}
+
+#credits {
+    position:absolute;
+    /*TODO zrobić to jak należy XD chodzi o margin top -> tak żeby sztucznie nie było pod spdoem*/
+    text-align:center;
+    margin-top:12rem;
+    color: #f0f8ffb8;
+
+}
+
+/*-----------------------SIDENAV-----------------------*/
+
+.sidenav {
+    font-family: "Lato", sans-serif;
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 50px;
+}
+
+.sidenav h2{
+
+    padding: 6px 6px 6px 32px;
+    color:wheat;
+}
+
+.sidenav a {
+
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
