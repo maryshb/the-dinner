@@ -3,33 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <title>The Dinner App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/commons.css">
+    <link rel="stylesheet" href="/models.css">
 </head>
 <body>
-<header>
-<div th:replace="fragments.html :: header"></div>
-<div th:replace="fragments.html :: menu"></div>
+
+
+<!-- Navigation -->
+<nav class="navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/about">O nas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/basket">Koszyk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:if="${!isLogged}">Zaloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:if="${isLogged}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="fw-light">The Dinner</h1>
+                <p class="lead">Zamów jedzenie online w aplikacji The Dinner i wspieraj lokalne restauracje.</p>
+            </div>
+        </div>
+    </div>
 </header>
 
-<content>
-<div id="content">
-    <div th:replace="fragments.html :: sidenav"></div>
+<div class="d-flex flex-row">
 
-    <div id="restaurants">
-        <th:block th:each="restaurant : ${restaurants}">
-            <div class="restaurant-box">
-                <div th:text="${restaurant.restaurantName}" class="title-box"></div>
-                <div th:text="${restaurant.address}" class="address-box"></div>
+<nav class="d-flex flex-column flex-shrink-0 p-5 bg-light" style="width: 350px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+        </svg>
+        <span class="fs-4">Kategorie</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <!--<a href="#" class="nav-link active" aria-current="page">-->
+            <a href="#" class="nav-link link-dark" aria-current="page">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                Amerykańskie
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                Azjatyckie
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                </svg>
+                Burgery
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Kebab
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Polskie
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Pizza
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Włoskie
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
+
+    <th:block th:each="restaurant : ${restaurants}">
+        <!--            // TODO DOROBIĆ MAPPING-->
+        <a href="/login" class="text-decoration-none flex-content">
+            <!-- szerokość kafelka z restauracją -->
+            <div class="col-lg-10 mt-4 mb-3">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item-->
+                    <li class="list-group-item">
+                        <!-- Custom content-->
+                        <div class="media align-items-lg-center d-flex flex-row flex-lg-row p-3 ">
+                            <img src="logo.png" alt="Generic placeholder image" width="200"
+                                 class="ml-lg-5 order-1 order-lg-1">
+                            <div class="media-body order-2 order-lg-2">
+                                <h5 th:text="${restaurant.restaurantName}" class="mt-0 font-weight-bold mb-2"></h5>
+                                <p th:text="${restaurant.address}" class="font-italic text-muted mb-0 small"></p>
+                                <h6 th:text="${restaurant.phone}" class="font-weight-bold my-2"></h6>
+                            </div>
+                        </div> <!-- End -->
+                    </li>
+                </ul>
             </div>
-        </th:block>
+        </a>
+    </th:block>
+
+</div>
+
+</div>
+
+<footer class="text-center text-white navbar-fixed-bottom" style="background-color: #ffb75e;">
+    <div class="container p-3"></div>
+    <div class="text-center p-3">
+        © 2021 Copyright: Maria Jewuła
     </div>
-
-</content>
-
-<footer>
-    <div th:replace="fragments.html :: footer"></div>
 </footer>
+
 
 </body>
 </html>

@@ -8,7 +8,9 @@
   <script src="registerValidator.js"></script>
 </head>
 <body>
-<div th:replace="fragments.html :: logo"></div>
+<div>
+  <img src="logo.png" id="logo">
+</div>
 
 <div>
   <form id="register-form" method="post" onsubmit="return validate()">
