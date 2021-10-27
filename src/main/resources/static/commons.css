@@ -4,10 +4,11 @@
 }
 
 .masthead {
-    height: 70vh;
+    height: 50vh;
     min-height: 500px;
     background-image: url("back.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
