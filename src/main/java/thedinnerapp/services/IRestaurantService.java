@@ -7,6 +7,11 @@ import java.util.List;
 public interface IRestaurantService {
     Restaurant getRestaurantById(int id);
     List<Restaurant> getAllRestaurants();
-    // TODO Add/Edit restaurant
+    List<Restaurant> getRestaurantsByCuisine(Restaurant.Cuisine cuisine);
+    void addRestaurant(Restaurant restaurant);
+    void updateRestaurant(Restaurant restaurant);
+    void removeRestaurant(Restaurant restaurant);
+
+    // TODO Edit/remove restaurant
 
 }

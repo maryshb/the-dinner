@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj restaurację</title>
+    <link rel="stylesheet" href="/commons.css">
+    <link rel="stylesheet" href="/add-restaurant.css">
+
+</head>
+<body>
+<div>
+    <img src="logo.png" id="logo">
+</div>
+
+<div>
+    <form id="add-restaurant-form" method="post">
+        <input type="text" placeholder="Nazwa restauracji" th:field="*{restaurantModel.restaurantName}" id="name">
+        <input type="text" placeholder="Telefon" th:field="*{restaurantModel.phone}" id="lastname">
+        <input type="text" placeholder="Adres" th:field="*{restaurantModel.address}" id="login">
+        <input type="text" placeholder="Kuchnia" th:field="*{restaurantModel.cuisine}" id="pass">
+        <input type="submit" value="Dodaj">
+</div>
+</form>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edytuj restaurację</title>
+  <link rel="stylesheet" href="/commons.css">
+  <link rel="stylesheet" href="/edit.css">
+
+</head>
+<body>
+<div>
+  <img src="logo.png" id="logo">
+</div>
+
+<div>
+  <form method="post" id="edit-form" >
+    <input type="text" th:field="*{restaurant.restaurantName}">
+    <input type="text"  th:field="*{restaurant.phone}">
+    <input type="text" th:field="*{restaurant.address}">
+    <input type="text" th:field="*{restaurant.cuisine}">
+    <input type="submit" value="Zatwierdź">
+</div>
+</form>
+</body>
+</html>
+
