@@ -10,7 +10,6 @@ Other tools and frameworks:
 Thymeleaf, Bootstrap
 
 
----- project in progress ----
 --- Description ---
 
 The Dinner is web application which allows customers to purchase food from restaurants. 
