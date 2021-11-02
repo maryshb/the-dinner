@@ -70,7 +70,7 @@
 
 
         <th:block th:each="cuisine : ${cuisines}">
-            <ul class="nav nav-pills flex-column mb-auto">
+            <ul class="nav nav-pills flex-column ">
                 <li class="nav-item">
                     <!-- TODO: mapping na kategorie -->
                     <a href="#" class="nav-link link-dark" aria-current="page">
@@ -83,34 +83,35 @@
 
     </nav>
 
-
     <div class="container">
-
-        <th:block th:each="restaurant : ${restaurants}">
-            <a th:href="@{/restaurant/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
-               class="text-decoration-none flex-content">
-                <div class="col-lg-10 mt-4 mb-3">
-                    <ul class="list-group shadow">
-                        <li class="list-group-item">
-                            <div class="media align-items-lg-center d-flex flex-row flex-lg-row p-3 ">
-                                <img src="logo.png" alt="Generic placeholder image" width="200"
-                                     class="ml-lg-5 order-1 order-lg-1">
-                                <div class="media-body order-2 order-lg-2">
-                                    <h5 th:text="${restaurant.restaurantName}" class="mt-0 font-weight-bold mb-2"></h5>
-                                    <p th:text="${restaurant.address}" class="font-italic text-muted mb-0 small"></p>
-                                    <h6 th:text="${restaurant.phone}" class="font-weight-bold my-2"></h6>
-                                    <a th:href="@{/edit/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
-                                       th:if="${role == 'ADMIN'}" class="admin-button">Edytuj</a>
-                                    <a th:href="@{/remove/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
-                                       th:if="${role == 'ADMIN'}" class="admin-button">Usuń</a>
+        <div class="restaurants">
+            <th:block th:each="restaurant : ${restaurants}">
+                <a th:href="@{/restaurant/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+                   class="text-decoration-none flex-content">
+                    <div class="col-lg-10 mt-4 mb-3">
+                        <ul class="list-group shadow">
+                            <li class="list-group-item">
+                                <div class="media align-items-lg-center d-flex flex-row flex-lg-row p-3 ">
+                                    <img src="logo.png" alt="Generic placeholder image" width="200"
+                                         class="ml-lg-5 order-1 order-lg-1">
+                                    <div class="media-body order-2 order-lg-2">
+                                        <h5 th:text="${restaurant.restaurantName}"
+                                            class="mt-0 font-weight-bold mb-2"></h5>
+                                        <p th:text="${restaurant.address}"
+                                           class="font-italic text-muted mb-0 small"></p>
+                                        <h6 th:text="${restaurant.phone}" class="font-weight-bold my-2"></h6>
+                                        <a th:href="@{/edit/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+                                           th:if="${role == 'ADMIN'}" class="admin-button">Edytuj</a>
+                                        <a th:href="@{/remove/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+                                           th:if="${role == 'ADMIN'}" class="admin-button">Usuń</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </a>
-        </th:block>
-
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+            </th:block>
+        </div>
     </div>
 
 </div>
