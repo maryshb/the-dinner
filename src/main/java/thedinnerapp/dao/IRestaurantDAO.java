@@ -11,6 +11,4 @@ public interface IRestaurantDAO {
     void persistRestaurant(Restaurant restaurant);
     void updateRestaurant(Restaurant restaurant);
     void removeRestaurant(Restaurant restaurant);
-    // TODO remove/Edit restaurant
-
 }

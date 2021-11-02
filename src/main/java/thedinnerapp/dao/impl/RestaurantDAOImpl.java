@@ -22,12 +22,12 @@ public class RestaurantDAOImpl implements IRestaurantDAO {
     @Override
     public Restaurant getRestaurantById(int id) {
         Session session = this.sessionFactory.openSession();
-        Query<Restaurant> query = session.createQuery("FROM thedinnerapp.model.Restaurant WHERE id=:id");
+        Query<Restaurant> query = session.createQuery("FROM thedinnerapp.model.Restaurant WHERE restaurantId=:id");
         query.setParameter("id", id);
         Restaurant restaurant = null;
         try {
             restaurant = query.getSingleResult();
-        } catch (NoResultException e ) {
+        } catch (NoResultException e) {
             System.out.println("Nie znaleziono restauracji!");
         }
         session.close();

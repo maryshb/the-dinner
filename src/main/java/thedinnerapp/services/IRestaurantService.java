@@ -11,7 +11,4 @@ public interface IRestaurantService {
     void addRestaurant(Restaurant restaurant);
     void updateRestaurant(Restaurant restaurant);
     void removeRestaurant(Restaurant restaurant);
-
-    // TODO Edit/remove restaurant
-
 }
