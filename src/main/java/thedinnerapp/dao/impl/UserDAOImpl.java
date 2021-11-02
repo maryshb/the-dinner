@@ -46,7 +46,7 @@ public class UserDAOImpl implements IUserDAO {
             return true;
 
         } catch (Exception e) {
-            if(tx != null)
+            if (tx != null)
                 tx.rollback();
         } finally {
             session.close();

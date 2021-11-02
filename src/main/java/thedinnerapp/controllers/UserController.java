@@ -25,53 +25,52 @@ public class UserController {
     SessionObject sessionObject;
 
 
-    @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String loginForm(Model model){
-        if(this.sessionObject.isLogged()) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginForm(Model model) {
+        if (this.sessionObject.isLogged()) {
             return "redirect:/main";
         }
         model.addAttribute("userModel", new User());
         return "login";
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute User user) {
         this.userService.authenticate(user);
-        if(this.sessionObject.isLogged()) {
+        if (this.sessionObject.isLogged()) {
             return "redirect:/main";
         }
         return "redirect:/login";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() {
         this.userService.logout();
-        return"redirect:/login";
+        return "redirect:/login";
     }
 
-    //TODO zrozumieć
 
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public String registerForm(Model model){
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerForm(Model model) {
         model.addAttribute("registrationModel", new RegistrationModel());
         model.addAttribute("info", this.sessionObject.getInfo());
         return "/register";
     }
 
     //TODO dodać regex do imienia, nazwiska i email
-    @RequestMapping(value="/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute RegistrationModel registrationModel){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@ModelAttribute RegistrationModel registrationModel) {
         Pattern regexp = Pattern.compile("[A-Za-z0-9]{5}.*");
         Matcher loginMatcher = regexp.matcher(registrationModel.getLogin());
         Matcher passMatcher = regexp.matcher(registrationModel.getPass());
         Matcher pass2Matcher = regexp.matcher(registrationModel.getPass2());
 
-        if(!loginMatcher.matches() || !passMatcher.matches() || !pass2Matcher.matches() || !registrationModel.getPass().equals(registrationModel.getPass2())) {
+        if (!loginMatcher.matches() || !passMatcher.matches() || !pass2Matcher.matches() || !registrationModel.getPass().equals(registrationModel.getPass2())) {
             this.sessionObject.setInfo("Validation error");
             return "redirect:/register";
         }
 
-        if(this.userService.register(registrationModel)){
+        if (this.userService.register(registrationModel)) {
             return "redirect:/login";
         } else {
             this.sessionObject.setInfo("Login zajęty!");
