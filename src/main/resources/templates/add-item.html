@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dodaj danie</title>
+  <link rel="stylesheet" href="/commons.css">
+  <link rel="stylesheet" href="/add-item.css">
+
+</head>
+<body>
+<div>
+  <img src="logo.png" id="logo">
+</div>
+
+<div>
+  <form id="add-item-form" method="post">
+    <input type="text" placeholder="Nazwa dania" th:field="*{itemModel.itemName}" id="name">
+    <input type="text" placeholder="Opis dania" th:field="*{itemModel.description}" id="description">
+    <input type="text" placeholder="Cena" th:field="*{itemModel.price}" id="price">
+
+    <input type="submit" value="Dodaj">
+</div>
+</form>
+</body>
+</html>
+
