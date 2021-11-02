@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import thedinnerapp.model.Item;
 import thedinnerapp.model.Restaurant;
 import thedinnerapp.model.User;
+import thedinnerapp.services.IItemService;
 import thedinnerapp.services.IRestaurantService;
 import thedinnerapp.session.SessionObject;
 
@@ -22,6 +24,9 @@ public class AdminController {
 
     @Autowired
     IRestaurantService restaurantService;
+
+    @Autowired
+    IItemService itemService;
 
     @RequestMapping(value = "/add-restaurant", method = RequestMethod.GET)
     public String addRestaurantForm(Model model) {
@@ -52,7 +57,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editRestaurantSubmit(@ModelAttribute Restaurant restaurant) {
+    public String editRestaurantSubmit(@ModelAttribute Restaurant restaurant, @PathVariable int id) {
+        restaurant.setRestaurantId(id);
         if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN){
             return "redirect:/login";
         }
@@ -69,8 +75,24 @@ public class AdminController {
         return "redirect:/main";
     }
 
+    @RequestMapping(value = "/add-item", method = RequestMethod.GET)
+    public String addItemForm(Model model) {
+        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+            return "redirect:/login";
+        }
+        model.addAttribute("isLogged", this.sessionObject.isLogged());
+        model.addAttribute("itemModel", new Item());
+        return "/add-item";
+    }
 
-
-
-
+    @RequestMapping(value = "/add-item", method = RequestMethod.POST)
+    public String addItemSubmit(@ModelAttribute Item item){
+        this.itemService.addItem(item);
+        return "redirect:/main";
+    }
 }
+
+
+
+
+
