@@ -13,7 +13,7 @@ import java.util.List;
 public class SessionObject {
     private User loggedUser = null;
     private String info = null;
-    private final List<Item> basket = new ArrayList<>();
+    private List<Item> basket = new ArrayList<>();
 
     public User getLoggedUser(){ return loggedUser; }
 
@@ -32,4 +32,7 @@ public class SessionObject {
 
     public List<Item> getBasket() { return basket; }
 
+    public void setBasket(List<Item> basket) {
+        this.basket = basket;
+    }
 }
