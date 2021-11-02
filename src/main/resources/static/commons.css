@@ -5,10 +5,21 @@
 
 .masthead {
     height: 50vh;
-    min-height: 500px;
+    min-height: 480px;
     background-image: url("back.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
+h1.fw-light{
+    color:white;
+}
+
+p.lead{
+    color:white;
+}
+
+.fs-4 {
+    margin-right:20%;
+}

@@ -8,71 +8,69 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/commons.css">
-    <link rel="stylesheet" href="/models.css">
     <link rel="stylesheet" href="/basket.css">
 </head>
 <body>
-
 
 <div th:replace="main :: top-navbar"></div>
 <div th:replace="main :: imageheader"></div>
 
 <div class="basket">
-<div class="card ">
-    <div class="row">
-        <div class="col-md-8 cart">
-            <div class="title">
-                <div class="row">
-                    <div class="col">
-                        <h4><b>Twój koszyk</b></h4>
+    <div class="card ">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Twój koszyk</b></h4>
+                        </div>
                     </div>
-<!--                    <div class="col align-self-center text-right text-muted">3 items</div>-->
                 </div>
-            </div>
 
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
-                    <div class="col">
-                        <div class="row text-muted">Shirt</div>
-                        <div class="row">Cotton T-shirt</div>
+                <th:block th:each="item : ${items}">
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="logo.png"></div>
+                            <div class="col">
+                                <div class="row text-muted" th:text="${item.itemName}"></div>
+                                <div class="row" th:text="${item.description}"></div>
+                            </div>
+                            <div class="col"><a th:href="@{/removeFromBasket/{id}(id=${item.itemId})}">-</a><a
+                                    class="border" th:text="${item.pieces}"></a><a
+                                    th:href="@{/addToBasket/{id}(id=${item.itemId})}">+</a></div>
+                            <div class="col" th:text="'PLN ' + ${item.price}"><span class="close">&#10005;</span></div>
+                        </div>
                     </div>
-                    <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                    <div class="col">PLN 44.00 <span class="close">&#10005;</span></div>
+                </th:block>
+
+                <div class="back-to-shop"><a href="/main">&leftarrow;</a><span
+                        class="text-muted">Powrót do sklepu</span></div>
+            </div>
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Podsumowanie</b></h5>
                 </div>
+                <hr>
+                <form>
+                    <p>DOSTAWA</p> <select>
+                    <!--                TODO: dodawanie dostawy do sumy-->
+                    <option class="text-muted">Standardowa dostawa - PLN 5.00</option>
+                    <option class="text-muted">Odbiór osobisty - PLN 0.00</option>
+                </select>
+                    <p>KOD RABATOWY</p> <input id="code" placeholder="Wpisz kod rabatowy">
+                </form>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">RAZEM</div>
+                    <div class="col text-right" th:text="'PLN ' + ${sum} + ' '"></div>
+                </div>
+                <button class="btn">KASA</button>
             </div>
-
-
-            <div class="back-to-shop"><a href="/main">&leftarrow;</a><span class="text-muted">Powrót do sklepu</span></div>
-        </div>
-        <div class="col-md-4 summary">
-            <div>
-                <h5><b>Podsumowanie</b></h5>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col" style="padding-left:0;">ILOŚĆ: 3</div>
-                <div class="col text-right">PLN 132.00</div>
-            </div>
-            <form>
-                <p>DOSTAWA</p> <select>
-                <option class="text-muted">Standardowa dostawa - PLN 5.00</option>
-                <option class="text-muted">Odbiór osobisty - PLN 0.00</option>
-            </select>
-                <p>KOD RABATOWY</p> <input id="code" placeholder="Wpisz kod rabatowy">
-            </form>
-            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">RAZEM</div>
-                <div class="col text-right">PLN 137.00</div>
-            </div> <button class="btn">KASA</button>
         </div>
     </div>
 </div>
-</div>
 
-<div th:replace="main :: footer" ></div>
+<div th:replace="main :: footer"></div>
 
 
 </body>

@@ -8,14 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/commons.css">
-    <link rel="stylesheet" href="/models.css">
+
 </head>
 <body>
 
 
-<!-- Navigation -->
 <nav class="navbar-expand-lg navbar-light bg-light shadow fixed-top" th:fragment="top-navbar">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
@@ -25,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/add-restaurant}" th:if="${role == 'ADMIN'}" >Dodaj restaurację</a>
+                    <a class="nav-link" th:href="@{/add-restaurant}" th:if="${role == 'ADMIN'}">Dodaj restaurację</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/main">Strona główna</a>
@@ -47,7 +45,7 @@
     </div>
 </nav>
 
-<!-- Full Page Image Header with Vertically Centered Content -->
+
 <header class="masthead" th:fragment="imageheader">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -59,42 +57,41 @@
     </div>
 </header>
 
+
 <div class="d-flex flex-row">
 
     <nav class="d-flex flex-column flex-shrink-0 p-5 bg-light" style="width: 350px;" th:fragment="side-nav">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
             </svg>
-            <span class="fs-4">Kategorie</span>
+            <span class="fs-4">KATEGORIE</span>
         </a>
         <hr>
-        <<th:block th:each="cuisine : ${cuisines}">>
+
+
+        <th:block th:each="cuisine : ${cuisines}">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <!--<a href="#" class="nav-link active" aria-current="page">-->
-                    <a href="" class="nav-link link-dark" aria-current="page">
-                        <!--            <a href="#" class="nav-link link-dark" aria-current="page" >-->
-                        <div class="bi me-2" width="16" height="16" name="cuisine" th:text="${cuisine}">
-                        </div>
+                    <!-- TODO: mapping na kategorie -->
+                    <a href="#" class="nav-link link-dark" aria-current="page">
+                        <option class="bi me-2" width="16" height="16" name="cuisine" th:text="*{cuisine}">
+                        </option>
                     </a>
                 </li>
             </ul>
         </th:block>
+
     </nav>
 
 
     <div class="container">
 
         <th:block th:each="restaurant : ${restaurants}">
-            <!--            // TODO DOROBIĆ MAPPING-->
-            <a href="/login" class="text-decoration-none flex-content">
-                <!-- szerokość kafelka z restauracją -->
+            <a th:href="@{/restaurant/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+               class="text-decoration-none flex-content">
                 <div class="col-lg-10 mt-4 mb-3">
-                    <!-- List group-->
                     <ul class="list-group shadow">
-                        <!-- list group item-->
                         <li class="list-group-item">
-                            <!-- Custom content-->
                             <div class="media align-items-lg-center d-flex flex-row flex-lg-row p-3 ">
                                 <img src="logo.png" alt="Generic placeholder image" width="200"
                                      class="ml-lg-5 order-1 order-lg-1">
@@ -102,11 +99,12 @@
                                     <h5 th:text="${restaurant.restaurantName}" class="mt-0 font-weight-bold mb-2"></h5>
                                     <p th:text="${restaurant.address}" class="font-italic text-muted mb-0 small"></p>
                                     <h6 th:text="${restaurant.phone}" class="font-weight-bold my-2"></h6>
-<!--                                    <a th:if="${role == 'ADMIN'}" th:href="@{/edit/{id}(id=${restaurant.id})}" class="far fa-edit"></a>-->
-                                    <a th:href="@{/edit/{id}(id=${restaurant.id})}" class="admin-button">Edytuj</a>
-                                    <a th:href="@{/remove/{id}(id=${restaurant.id})}" class="admin-button">Usuń</a>
+                                    <a th:href="@{/edit/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+                                       th:if="${role == 'ADMIN'}" class="admin-button">Edytuj</a>
+                                    <a th:href="@{/remove/{restaurantId}(restaurantId=${restaurant.restaurantId})}"
+                                       th:if="${role == 'ADMIN'}" class="admin-button">Usuń</a>
                                 </div>
-                            </div> <!-- End -->
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -117,7 +115,7 @@
 
 </div>
 
-<footer class="text-center text-white navbar-fixed-bottom" style="background-color: #ffb75e;" th:fragment="footer">
+<footer class="text-center text-white navbar-fixed-bottom" style="background-color: #ffbb66;" th:fragment="footer">
     <div class="container p-3"></div>
     <div class="text-center p-3">
         © 2021 Copyright: Maria Jewuła
