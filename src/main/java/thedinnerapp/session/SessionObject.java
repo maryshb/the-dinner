@@ -15,22 +15,31 @@ public class SessionObject {
     private String info = null;
     private List<Item> basket = new ArrayList<>();
 
-    public User getLoggedUser(){ return loggedUser; }
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 
-    public void setLoggedUser(User loggedUser) { this.loggedUser = loggedUser; }
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
 
-    public boolean isLogged() { return this.loggedUser != null; }
+    public boolean isLogged() {
+        return this.loggedUser != null;
+    }
 
-    // use for validation info etc (from validator)
-    public String getInfo(){
+    public String getInfo() {
         String temp = this.info;
         this.info = null;
         return temp;
     }
 
-    public void setInfo(String info) { this.info = info; }
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
-    public List<Item> getBasket() { return basket; }
+    public List<Item> getBasket() {
+        return basket;
+    }
 
     public void setBasket(List<Item> basket) {
         this.basket = basket;

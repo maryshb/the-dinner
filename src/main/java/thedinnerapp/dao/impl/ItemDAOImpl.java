@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import thedinnerapp.dao.IItemDAO;
 import thedinnerapp.model.Item;
+
 import javax.persistence.NoResultException;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class ItemDAOImpl implements IItemDAO {
             session.delete(item);
             tx.commit();
         } catch (Exception e) {
-            if(tx != null ) {
+            if (tx != null) {
                 tx.rollback();
             }
         } finally {
@@ -69,8 +70,8 @@ public class ItemDAOImpl implements IItemDAO {
             session.update(item);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null);
-                tx.rollback();
+            if (tx != null) ;
+            tx.rollback();
         } finally {
             session.close();
         }
@@ -85,7 +86,7 @@ public class ItemDAOImpl implements IItemDAO {
             session.save(item);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null){
+            if (tx != null) {
                 tx.rollback();
             }
         } finally {

@@ -30,7 +30,7 @@ public class AdminController {
 
     @RequestMapping(value = "/add-restaurant", method = RequestMethod.GET)
     public String addRestaurantForm(Model model) {
-        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
         }
         model.addAttribute("isLogged", this.sessionObject.isLogged());
@@ -46,7 +46,7 @@ public class AdminController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editRestaurantForm(@PathVariable int id, Model model) {
-        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
         }
         Restaurant restaurant = this.restaurantService.getRestaurantById(id);
@@ -59,7 +59,7 @@ public class AdminController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editRestaurantSubmit(@ModelAttribute Restaurant restaurant, @PathVariable int id) {
         restaurant.setRestaurantId(id);
-        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN){
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
         }
         this.restaurantService.updateRestaurant(restaurant);
@@ -68,16 +68,16 @@ public class AdminController {
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
     public String removeRestaurant(@PathVariable int id) {
-        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
         }
         this.restaurantService.removeRestaurant(this.restaurantService.getRestaurantById(id));
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "/add-item", method = RequestMethod.GET)
-    public String addItemForm(Model model) {
-        if(!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+    @RequestMapping(value = "/add-item/{id}", method = RequestMethod.GET)
+    public String addItemForm(Model model, @PathVariable int id) {
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
         }
         model.addAttribute("isLogged", this.sessionObject.isLogged());
@@ -85,8 +85,9 @@ public class AdminController {
         return "/add-item";
     }
 
-    @RequestMapping(value = "/add-item", method = RequestMethod.POST)
-    public String addItemSubmit(@ModelAttribute Item item){
+    @RequestMapping(value = "/add-item/{id}", method = RequestMethod.POST)
+    public String addItemSubmit(@ModelAttribute Item item, @PathVariable int id) {
+        item.setRestaurant(this.restaurantService.getRestaurantById(id));
         this.itemService.addItem(item);
         return "redirect:/main";
     }

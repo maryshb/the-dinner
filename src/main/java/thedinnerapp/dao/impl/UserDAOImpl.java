@@ -21,7 +21,6 @@ public class UserDAOImpl implements IUserDAO {
     @Override
     public User getUserByLogin(String login) {
         Session session = this.sessionFactory.openSession();
-        System.out.println(login);
         Query<User> query = session.createQuery("FROM thedinnerapp.model.User WHERE login = :login");
         query.setParameter("login", login);
         User result = null;

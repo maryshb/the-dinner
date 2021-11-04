@@ -47,6 +47,7 @@ public class RestaurantDAOImpl implements IRestaurantDAO {
     public List<Restaurant> getRestaurantsByCuisine(Restaurant.Cuisine cuisine) {
         Session session = this.sessionFactory.openSession();
         Query<Restaurant> query = session.createQuery("FROM thedinnerapp.model.Restaurant WHERE cuisine=:cuisine");
+        query.setParameter("cuisine", cuisine);
         List<Restaurant> restaurants = query.getResultList();
         session.close();
         return restaurants;

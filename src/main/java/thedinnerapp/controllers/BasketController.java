@@ -21,7 +21,7 @@ public class BasketController {
     SessionObject sessionObject;
 
     @RequestMapping(value = "/basket", method = RequestMethod.GET)
-    public String basket(Model model) {
+    public String basketPage(Model model) {
         if (!this.sessionObject.isLogged()) {
             return "redirect:/login";
         }
@@ -43,7 +43,7 @@ public class BasketController {
 
     @RequestMapping(value = "/removeFromBasket/{id}", method = RequestMethod.GET)
     public String removeFromBasket(@PathVariable int id) {
-        if(!this.sessionObject.isLogged()){
+        if (!this.sessionObject.isLogged()) {
             return "redirect:/login";
         }
         this.basketService.removeItemByIdFromBasket(id);

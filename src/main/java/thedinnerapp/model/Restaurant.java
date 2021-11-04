@@ -14,6 +14,7 @@ public class Restaurant {
     private String restaurantName;
     private String phone;
     private String address;
+    @Enumerated(EnumType.STRING)
     private Cuisine cuisine;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
     private Collection<Item> items;
@@ -32,6 +33,8 @@ public class Restaurant {
     }
 
 
+
+
     public enum Cuisine {
         AMERICAN,
         ASIAN,
@@ -41,6 +44,8 @@ public class Restaurant {
         PIZZA,
         ITALIAN
     }
+
+
 
 //    public ArrayList<Restaurant.Cuisine> getAllCuisines(){
 //        ArrayList<Restaurant.Cuisine> cuisines = new ArrayList<Restaurant.Cuisine>();

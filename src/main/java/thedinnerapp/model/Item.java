@@ -30,6 +30,5 @@ public class Item {
         this.pieces = pieces;
         this.restaurant = restaurant;
     }
-
 }
 

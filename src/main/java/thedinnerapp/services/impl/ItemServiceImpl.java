@@ -36,7 +36,6 @@ public class ItemServiceImpl implements IItemService {
         itemFromDB.setItemName(item.getItemName());
         itemFromDB.setDescription(item.getDescription());
         itemFromDB.setPrice(item.getPrice());
-
         this.itemDAO.updateItem(itemFromDB);
     }
 

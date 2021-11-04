@@ -40,26 +40,27 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String contact(Model model) {
+    public String contactPage(Model model) {
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         return "contact";
     }
 
-    @RequestMapping(path = "/kategorie")
-    public String greetingSubmit(@ModelAttribute Restaurant.Cuisine cuisine, Model model) {
-        model.addAttribute("cuisine", cuisine);
+    @RequestMapping(path = "/category/{cuisine}", method = RequestMethod.GET)
+    public String categoryPage(@ModelAttribute Restaurant.Cuisine cuisine, Model model) {
         model.addAttribute("isLogged", this.sessionObject.isLogged());
-        return "contact";
+        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
+        model.addAttribute("restaurants", this.restaurantService.getRestaurantsByCuisine(cuisine));
+        model.addAttribute("cuisines", Restaurant.Cuisine.values());
+        model.addAttribute("cuisine", cuisine);
+        return "main";
     }
 
     @RequestMapping(path = "/restaurant/{id}", method = RequestMethod.GET)
-    public String restaurant(@PathVariable int id, Model model) {
+    public String restaurantPage(@PathVariable int id, Model model) {
         model.addAttribute("isLogged", this.sessionObject.isLogged());
+        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
         model.addAttribute("restaurant", this.restaurantService.getRestaurantById(id));
         model.addAttribute("items", this.itemService.getItemsByRestaurantId(id));
-        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
         return "restaurant";
     }
-
-
 }
