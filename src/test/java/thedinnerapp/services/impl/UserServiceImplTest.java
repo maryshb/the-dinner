@@ -57,7 +57,6 @@ public class UserServiceImplTest {
         Mockito.when(this.userDAO.persistUser(ArgumentMatchers.any())).thenReturn(true);
         boolean result = userService.register(registrationModel);
         Assert.assertTrue(result);
-
     }
 
 }

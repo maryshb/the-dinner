@@ -30,14 +30,13 @@ public class BasketServiceImplTest {
     @Test
     public void calculateTotalTest() {
         Restaurant restaurant = new Restaurant();
-        sessionObject.getBasket().add(new Item(1, "Item", "ABCD", 10, 1, restaurant ));
-        sessionObject.getBasket().add(new Item(2, "Item2", "ABCD2", 20, 1, restaurant ));
-        sessionObject.getBasket().add(new Item(3, "Item3", "ABCD3", 30, 1, restaurant ));
+        sessionObject.getBasket().add(new Item(1, "Item", "ABCD", 10, 1, restaurant));
+        sessionObject.getBasket().add(new Item(2, "Item2", "ABCD2", 20, 1, restaurant));
+        sessionObject.getBasket().add(new Item(3, "Item3", "ABCD3", 30, 1, restaurant));
 
         double expectedResult = 60;
         double result = this.basketService.calculateTotal();
 
         Assertions.assertEquals(expectedResult, result);
-
     }
 }
