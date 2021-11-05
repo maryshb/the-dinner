@@ -57,7 +57,6 @@ public class UserController {
         return "/register";
     }
 
-    //TODO dodać regex do imienia, nazwiska i email
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute RegistrationModel registrationModel) {
         Pattern regexp = Pattern.compile("[A-Za-z0-9]{5}.*");

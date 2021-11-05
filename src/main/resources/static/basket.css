@@ -90,7 +90,7 @@ a {
 }
 
 img {
-    width: 3.5rem
+    width: 9rem
 }
 
 .back-to-shop {
@@ -157,7 +157,8 @@ input:focus::-webkit-input-placeholder {
 }
 
 a {
-    color: black
+    color: black;
+    text-decoration: none
 }
 
 a:hover {

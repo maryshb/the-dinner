@@ -5,12 +5,11 @@
     <title>Edytuj restaurację</title>
     <link rel="stylesheet" href="/commons.css">
     <link rel="stylesheet" href="/edit.css">
-
 </head>
 <body>
 <div>
     <a href="/main">
-        <img src="logo.png" id="logo" alt="Logo">
+        <img src="logo.png" id="logo">
     </a>
 </div>
 
@@ -19,6 +18,7 @@
         <input type="text" th:field="*{restaurant.restaurantName}">
         <input type="text" th:field="*{restaurant.phone}">
         <input type="text" th:field="*{restaurant.address}">
+        <input type="text" th:field="*{restaurant.cuisine}">
         <input type="submit" value="Zatwierdź">
     </form>
 </div>

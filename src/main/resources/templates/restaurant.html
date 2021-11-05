@@ -25,7 +25,7 @@
                     <a class="nav-link" th:href="@{/add-restaurant}" th:if="${role == 'ADMIN'}">Dodaj restaurację</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/add-item}" th:if="${role == 'ADMIN'}">Dodaj danie</a>
+                    <a class="nav-link" th:href="@{/add-item/{restaurantId}(restaurantId=${restaurant.restaurantId})}" th:if="${role == 'ADMIN'}">Dodaj danie</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/main">Strona główna</a>

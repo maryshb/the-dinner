@@ -30,7 +30,6 @@ public class RestaurantServiceImpl implements IRestaurantService {
 
     @Override
     public void addRestaurant(Restaurant restaurant) {
-        // TODO sprawdzenie czy istnieje restauracja, sprawdzenie poprawności wprowadzonych danych
         this.restaurantDAO.persistRestaurant(restaurant);
     }
 

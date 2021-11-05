@@ -31,7 +31,7 @@
                 <th:block th:each="item : ${items}">
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="logo.png"></div>
+                            <div class="col-2"><img src="logo.png"></div>
                             <div class="col">
                                 <div class="row text-muted" th:text="${item.itemName}"></div>
                                 <div class="row" th:text="${item.description}"></div>
@@ -54,7 +54,6 @@
                 <hr>
                 <form>
                     <p>DOSTAWA</p> <select>
-                    <!--                TODO: dodawanie dostawy do sumy-->
                     <option class="text-muted">Standardowa dostawa - PLN 5.00</option>
                     <option class="text-muted">Odbiór osobisty - PLN 0.00</option>
                 </select>

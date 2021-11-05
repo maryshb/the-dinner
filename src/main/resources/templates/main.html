@@ -72,8 +72,7 @@
         <th:block th:each="cuisine : ${cuisines}">
             <ul class="nav nav-pills flex-column ">
                 <li class="nav-item">
-                    <!-- TODO: mapping na kategorie -->
-                    <a href="#" class="nav-link link-dark" aria-current="page">
+                    <a th:href="@{/category/{cuisine}(cuisine=${cuisine})}" href="#" class="nav-link link-dark" aria-current="page">
                         <option class="bi me-2" width="16" height="16" name="cuisine" th:text="*{cuisine}">
                         </option>
                     </a>

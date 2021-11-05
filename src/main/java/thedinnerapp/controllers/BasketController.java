@@ -37,7 +37,6 @@ public class BasketController {
             return "redirect:/login";
         }
         this.basketService.addItemByIdToBasket(id);
-        // TODO zrobić redirect na restauracje
         return "redirect:/main";
     }
 
