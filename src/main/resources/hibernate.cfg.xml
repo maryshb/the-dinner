@@ -31,6 +31,7 @@
         <mapping class="thedinnerapp.model.User"/>
         <mapping class="thedinnerapp.model.Restaurant"/>
         <mapping class="thedinnerapp.model.Item"/>
+        <mapping class="thedinnerapp.model.Order"/>
 
 
     </session-factory>
