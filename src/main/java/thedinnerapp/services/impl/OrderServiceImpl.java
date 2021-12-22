@@ -1,10 +1,12 @@
 package thedinnerapp.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import thedinnerapp.dao.IOrderDAO;
 import thedinnerapp.model.Order;
 import thedinnerapp.services.IOrderService;
 
+@Service
 public class OrderServiceImpl implements IOrderService {
 
     @Autowired
