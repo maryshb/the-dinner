@@ -8,9 +8,13 @@ import thedinnerapp.services.IOrderService;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
+    
+    private IOrderDAO orderDAO;
 
     @Autowired
-    IOrderDAO orderDAO;
+    public OrderServiceImpl(IOrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
 
     @Override
     public void saveOrder(Order order) {

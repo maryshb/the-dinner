@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thedinnerapp.dao.IItemDAO;
 import thedinnerapp.model.Item;
-import thedinnerapp.model.Restaurant;
 import thedinnerapp.services.IItemService;
 
 import java.util.List;
@@ -12,8 +11,12 @@ import java.util.List;
 @Service
 public class ItemServiceImpl implements IItemService {
 
+    private IItemDAO itemDAO;
+
     @Autowired
-    IItemDAO itemDAO;
+    public ItemServiceImpl(IItemDAO itemDAO) {
+        this.itemDAO = itemDAO;
+    }
 
     @Override
     public Item getItemById(int id) {

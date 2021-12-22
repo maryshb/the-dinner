@@ -14,9 +14,12 @@ import javax.persistence.NoResultException;
 @Repository
 public class UserDAOImpl implements IUserDAO {
 
+    private SessionFactory sessionFactory;
 
     @Autowired
-    SessionFactory sessionFactory;
+    public UserDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public User getUserByLogin(String login) {

@@ -14,11 +14,14 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Resource
-    SessionObject sessionObject;
+    private SessionObject sessionObject;
+    private IUserDAO userDAO;
 
     @Autowired
-    IUserDAO userDAO;
+    public UserServiceImpl(SessionObject sessionObject, IUserDAO userDAO) {
+        this.sessionObject = sessionObject;
+        this.userDAO = userDAO;
+    }
 
     private static final int logRounds = 12;
 

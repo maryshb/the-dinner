@@ -7,19 +7,20 @@ import thedinnerapp.model.Item;
 import thedinnerapp.services.IBasketService;
 import thedinnerapp.session.SessionObject;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.ListIterator;
 
 @Service
 public class BasketServiceImpl implements IBasketService {
 
+    private IItemDAO itemDAO;
+    private SessionObject sessionObject;
+
     @Autowired
-    IItemDAO itemDAO;
-
-    @Resource
-    SessionObject sessionObject;
-
+    public BasketServiceImpl(IItemDAO itemDAO, SessionObject sessionObject) {
+        this.itemDAO = itemDAO;
+        this.sessionObject = sessionObject;
+    }
 
     @Override
     public double calculateTotal() {

@@ -15,8 +15,12 @@ import java.util.List;
 @Repository
 public class ItemDAOImpl implements IItemDAO {
 
+    private SessionFactory sessionFactory;
+
     @Autowired
-    SessionFactory sessionFactory;
+    public ItemDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Item getItemById(int id) {

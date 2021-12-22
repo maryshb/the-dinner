@@ -3,10 +3,7 @@ package thedinnerapp.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import thedinnerapp.model.Item;
 import thedinnerapp.model.Restaurant;
 import thedinnerapp.model.User;
@@ -19,16 +16,18 @@ import javax.annotation.Resource;
 @Controller
 public class AdminController {
 
-    @Resource
-    SessionObject sessionObject;
+    private SessionObject sessionObject;
+    private IRestaurantService restaurantService;
+    private IItemService itemService;
 
     @Autowired
-    IRestaurantService restaurantService;
+    public AdminController(SessionObject sessionObject, IRestaurantService restaurantService, IItemService itemService) {
+        this.sessionObject = sessionObject;
+        this.restaurantService = restaurantService;
+        this.itemService = itemService;
+    }
 
-    @Autowired
-    IItemService itemService;
-
-    @RequestMapping(value = "/add-restaurant", method = RequestMethod.GET)
+    @GetMapping(value = "/add-restaurant")
     public String addRestaurantForm(Model model) {
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
@@ -38,13 +37,13 @@ public class AdminController {
         return "/add-restaurant";
     }
 
-    @RequestMapping(value = "/add-restaurant", method = RequestMethod.POST)
+    @PostMapping(value = "/add-restaurant")
     public String addRestaurantSubmit(@ModelAttribute Restaurant restaurant) {
         this.restaurantService.addRestaurant(restaurant);
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/edit/{id}")
     public String editRestaurantForm(@PathVariable int id, Model model) {
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
@@ -56,7 +55,7 @@ public class AdminController {
         return "edit";
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/edit/{id}")
     public String editRestaurantSubmit(@ModelAttribute Restaurant restaurant, @PathVariable int id) {
         restaurant.setRestaurantId(id);
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
@@ -66,7 +65,7 @@ public class AdminController {
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/remove/{id}")
     public String removeRestaurant(@PathVariable int id) {
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
@@ -75,7 +74,7 @@ public class AdminController {
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "/add-item/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/add-item/{id}")
     public String addItemForm(Model model, @PathVariable int id) {
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
             return "redirect:/login";
@@ -85,7 +84,7 @@ public class AdminController {
         return "/add-item";
     }
 
-    @RequestMapping(value = "/add-item/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/add-item/{id}")
     public String addItemSubmit(@ModelAttribute Item item, @PathVariable int id) {
         item.setRestaurant(this.restaurantService.getRestaurantById(id));
         this.itemService.addItem(item);

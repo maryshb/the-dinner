@@ -15,9 +15,12 @@ import java.util.List;
 @Repository
 public class RestaurantDAOImpl implements IRestaurantDAO {
 
-    @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
+    @Autowired
+    public RestaurantDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Restaurant getRestaurantById(int id) {

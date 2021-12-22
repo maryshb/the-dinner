@@ -3,7 +3,6 @@ package thedinnerapp.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thedinnerapp.dao.IRestaurantDAO;
-import thedinnerapp.dao.impl.RestaurantDAOImpl;
 import thedinnerapp.model.Restaurant;
 import thedinnerapp.services.IRestaurantService;
 
@@ -11,8 +10,13 @@ import java.util.List;
 
 @Service
 public class RestaurantServiceImpl implements IRestaurantService {
+
+    private IRestaurantDAO restaurantDAO;
+
     @Autowired
-    IRestaurantDAO restaurantDAO;
+    public RestaurantServiceImpl(IRestaurantDAO restaurantDAO) {
+        this.restaurantDAO = restaurantDAO;
+    }
 
     @Override
     public Restaurant getRestaurantById(int id) {

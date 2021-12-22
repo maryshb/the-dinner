@@ -12,8 +12,12 @@ import thedinnerapp.model.Order;
 @Repository
 public class OrderDAOimpl implements IOrderDAO {
 
+    private SessionFactory sessionFactory;
+
     @Autowired
-    SessionFactory sessionFactory;
+    public OrderDAOimpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void saveOrder(Order order) {

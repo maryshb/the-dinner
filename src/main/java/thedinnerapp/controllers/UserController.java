@@ -3,9 +3,7 @@ package thedinnerapp.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import thedinnerapp.model.User;
 import thedinnerapp.model.view.RegistrationModel;
 import thedinnerapp.services.IUserService;
@@ -18,14 +16,16 @@ import java.util.regex.Pattern;
 @Controller
 public class UserController {
 
+    private IUserService userService;
+    private SessionObject sessionObject;
+
     @Autowired
-    IUserService userService;
+    public UserController(IUserService userService, SessionObject sessionObject) {
+        this.userService = userService;
+        this.sessionObject = sessionObject;
+    }
 
-    @Resource
-    SessionObject sessionObject;
-
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String loginForm(Model model) {
         if (this.sessionObject.isLogged()) {
             return "redirect:/main";
@@ -34,7 +34,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public String login(@ModelAttribute User user) {
         this.userService.authenticate(user);
         if (this.sessionObject.isLogged()) {
@@ -43,21 +43,21 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @GetMapping(value = "/logout")
     public String logout() {
         this.userService.logout();
         return "redirect:/login";
     }
 
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String registerForm(Model model) {
         model.addAttribute("registrationModel", new RegistrationModel());
         model.addAttribute("info", this.sessionObject.getInfo());
         return "/register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public String register(@ModelAttribute RegistrationModel registrationModel) {
         Pattern regexp = Pattern.compile("[A-Za-z0-9]{5}.*");
         Matcher loginMatcher = regexp.matcher(registrationModel.getLogin());
