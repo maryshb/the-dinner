@@ -28,7 +28,7 @@ public class BasketServiceImplTest {
     SessionObject sessionObject;
 
     @Test
-    public void calculateTotalTest() {
+    public void calculateTotalTest_ShouldReturnTotalPrice_ForBasket() {
         Restaurant restaurant = new Restaurant();
         sessionObject.getBasket().add(new Item(1, "Item", "ABCD", 10, 1, restaurant));
         sessionObject.getBasket().add(new Item(2, "Item2", "ABCD2", 20, 1, restaurant));
