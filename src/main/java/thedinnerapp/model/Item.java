@@ -1,11 +1,15 @@
 package thedinnerapp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "titem")
 public class Item {
     @Id
@@ -18,17 +22,5 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "restaurantId")
     private Restaurant restaurant;
-
-    public Item() {
-    }
-
-    public Item(int itemId, String itemName, String description, double price, int pieces, Restaurant restaurant) {
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.description = description;
-        this.price = price;
-        this.pieces = pieces;
-        this.restaurant = restaurant;
-    }
 }
 

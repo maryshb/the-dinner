@@ -11,5 +11,4 @@ public interface IItemService {
     void addItem(Item item);
     void updateItem(Item item);
     void removeItem(Item item);
-
 }

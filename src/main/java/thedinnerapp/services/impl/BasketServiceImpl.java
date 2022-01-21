@@ -56,6 +56,4 @@ public class BasketServiceImpl implements IBasketService {
         }
         this.sessionObject.setBasket(itemsFromBasket);
     }
-
-
 }

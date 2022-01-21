@@ -49,7 +49,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-
     @GetMapping(value = "/register")
     public String registerForm(Model model) {
         model.addAttribute("registrationModel", new RegistrationModel());
@@ -75,6 +74,5 @@ public class UserController {
             this.sessionObject.setInfo("Login zajęty!");
             return "redirect:/register";
         }
-
     }
 }

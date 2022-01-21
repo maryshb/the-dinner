@@ -52,5 +52,4 @@ public class BasketController {
         this.basketService.removeItemByIdFromBasket(id);
         return "redirect:/main";
     }
-
 }

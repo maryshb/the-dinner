@@ -1,6 +1,8 @@
 package thedinnerapp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "tuser")
 public class User {
     @Id
@@ -19,29 +23,6 @@ public class User {
     private String email;
     private String pass;
     private Role role;
-
-    public User() {
-
-    }
-
-    public User(int userId, String name, String lastname, String login, String email, String pass, Role role) {
-        this.userId = userId;
-        this.name = name;
-        this.lastname = lastname;
-        this.login = login;
-        this.email = email;
-        this.pass = pass;
-        this.role = role;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
 
     public enum Role {
         ADMIN,
